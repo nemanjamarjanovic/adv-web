@@ -1,0 +1,65 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <!--                <div class="navbar-header"> <img class="img-responsive w64 "   src="images/icon.png" ></div>-->
+
+        <div class="navbar-header">  
+            <!--                    <img class="navbar-brand w64 "  src="images/icon.png">  -->
+            <a class="navbar-brand" href="#">Pregled podataka sa senzora</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#/customer">Podesavanja</a>
+                </li>
+                <li>
+                    <a href="#/customer">Pomoc</a>
+                </li>
+                <li>
+                    <a href="#/customer">Kontakt</a>
+                </li>
+                <li>
+                    <a ng-click="logout()">Izlaz</a>
+                </li>
+            </ul>
+
+            
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-3 col-md-2 sidebar">
+        <ul class="nav nav-sidebar">
+            <li>
+                <a href="#/customer">
+                    Pocetak
+                 
+                </a>
+            </li>
+            <li>
+                <a href="#/customer">
+                    Informacije
+                </a>
+            </li>
+            <li>
+                <a  href="#/customer_chart">
+                    Istorija
+                </a>
+            </li>
+            <li>
+                <a class="active"  href="#/customer_stat">
+                    Statistika
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<table ng-table class="table">
+    <tr ng-repeat="measurement in measurements">
+        <td data-title="'Vrijeme'">{{measurement.createTime|  date:'dd.MM.yyyy HH:mm:ss'}}</td>
+        <td data-title="'Temperatura'">{{measurement.temperature| number:1}}</td>
+        <td data-title="'Vlaznost'">{{measurement.humidity| number: 1}}</td>
+    </tr>
+</table>

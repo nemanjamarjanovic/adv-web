@@ -1,0 +1,70 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <!--                <div class="navbar-header"> <img class="img-responsive w64 "   src="images/icon.png" ></div>-->
+
+        <div class="navbar-header">  
+            <!--                    <img class="navbar-brand w64 "  src="images/icon.png">  -->
+            <a class="navbar-brand" href="#">Pregled podataka sa senzora</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#/customer">Podesavanja</a>
+                </li>
+                <li>
+                    <a href="#/customer">Pomoc</a>
+                </li>
+                <li>
+                    <a href="#/customer">Kontakt</a>
+                </li>
+                <li>
+                    <a ng-click="logout()">Izlaz</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-3 col-md-2 sidebar">
+        <ul class="nav nav-sidebar">
+            <li >
+                <a href="#/customer">
+                    Pocetak
+                    
+                </a>
+            </li>
+            <li>
+                <a class="active" href="#/customer">
+                    Informacije
+                      <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li>
+                <a href="#/customer_chart">
+                    Istorija
+                </a>
+            </li>
+            <li>
+                <a href="#/customer_stat">
+                    Statistika
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<h1 class="page-header">{{message}}</h1>
+<div class="row placeholders">
+    <div class="col-xs-6 col-sm-3 placeholder">
+        <img class="img-responsive"   src="images/temperature.png">
+        <h1>{{measurement.temperature | number:1}}</h1>
+        <span class="text-muted">Temperatura</span>
+    </div>
+    <div class="col-xs-6 col-sm-3 placeholder">
+        <img class="img-responsive" src="images/humidity.png">
+        <h1>{{measurement.humidity | number: 1}}</h1>
+        <span class="text-muted">Vlaznost</span>
+    </div>
+</div>

@@ -1,0 +1,158 @@
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Pregled podataka sa senzora</a>
+        </div>
+        <div >
+            <ul class="nav navbar-nav navbar-right">
+                <li><a ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span> Odjavi se</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Korisnici</div>
+                <div class="panel-body">
+                    <div class="pull-right">
+                        <button class="btn btn-primary" type="button" ng-click="showCreateCustomer(null)" >Novi korisnik</button>
+                    </div>
+                </div>
+                <table ng-table class="table">
+                    <tr>
+                        <th>id</th>
+                        <th>Ime</th>
+                        <th>Lokacija</th>
+                        <th>Aktivan</th>
+                        <th>Izmjena</th>
+                    </tr>
+                    <tr ng-repeat="customer in customers" class="text-center" >
+                        <td>{{customer.id}}</td>
+                        <td>{{customer.name}}</td>
+                        <td>{{customer.location}}</td>
+                        <td>{{customer.active}}</td>
+                        <td><a class="glyphicon glyphicon-pencil" aria-hidden="true" ng-click="showCreateCustomer(customer)"></a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-primary" ng-show="customerEdit">
+                <div class="panel-heading">Korisnik</div>
+                <div class="panel-body">
+                    <form name="form" ng-submit="createCustomer()" role="form">
+                        <div class="form-group">
+                            <label >Id:</label>
+                            <label>{{customer.id}}</label>
+                        </div>
+                        <div class="form-group">
+                            <label >Aktivan:</label>
+                            <label>{{customer.active}}</label>
+                        </div>
+                        <div class="form-group">
+                            <label >Vrijeme:</label>
+                            <label>{{customer.createTime}}</label>
+                        </div>
+                        <div class="form-group">
+                            <label >Ime:</label>
+                            <input type="text" class="form-control" ng-model="customer.name" required />
+                        </div>
+                        <div class="form-group">
+                            <label >Lokacija:</label>
+                            <input type="text" class="form-control" ng-model="customer.location" required />
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-danger" ng-click="customerEdit = false">Odustani</button>
+                            <div class="pull-right">
+                                <button type="submit" class="btn btn-success">Sacuvaj</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-9">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Uredjaji</div>
+                <div class="panel-body">
+                    <div class="pull-right">
+                        <button class="btn btn-primary" type="button" ng-click="showCreateDevice(null)" >Novi uredjaj</button>
+                    </div>
+                </div>
+                <table ng-table class="table">
+                    <tr>
+                        <th>id</th>
+                        <th>Serijski broj</th>
+                        <th>Lokacija</th>
+                        <th>Aktivan</th>
+                        <th>Izmjena</th>
+                    </tr>
+                    <tr ng-repeat="device in devices" class="text-center" >
+                        <td>{{device.id}}</td>
+                        <td>{{device.serialNumber}}</td>
+                        <td>{{device.location}}</td>
+                        <td>{{device.active}}</td>
+                        <td><a class="glyphicon glyphicon-pencil" aria-hidden="true" ng-click="showCreateDevice(device)"></a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-primary"  ng-show="deviceEdit">
+                <div class="panel-heading">Uredjaj</div>
+                <div class="panel-body">
+                    <form name="form" ng-submit="createDevice()" role="form">
+                        <div class="form-group">
+                            <label >Id:</label>
+                            <label>{{device.id}}</label>
+                        </div>
+                        <div class="form-group">
+                            <label >Aktivan:</label>
+                            <label>{{device.active}}</label>
+                        </div>
+                        <div class="form-group">
+                            <label >Mod rada:</label>
+                            <label>{{device.workingMode.title}}</label>
+                        </div>
+                        <div class="form-group">
+                            <label >Vrijeme:</label>
+                            <label>{{device.createTime}}</label>
+                        </div>
+                        <div class="form-group">
+                            <label >Serijski broj:</label>
+                            <input type="text" class="form-control" ng-model="device.serialNumber" required />
+                        </div>
+                        <div class="form-group">
+                            <label >Lokacija:</label>
+                            <input type="text" class="form-control" ng-model="device.location" required />
+                        </div>
+                        <div class="form-group">
+                            <label >Vlasink:</label>
+                            <select class="form-control" ng-model="device.customer" required
+                                    ng-options="customer as customer.name for customer in customers track by customer.id">
+                            </select>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-danger" ng-click="deviceEdit = false">Odustani</button>
+                            <div class="pull-right">
+                                <button type="submit" class="btn btn-success">Sacuvaj</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom alert alert-danger" ng-show="error" >
+    <div class="container">
+        <span>{{error}}</span>
+    </div>
+</nav>
